@@ -6,7 +6,7 @@ R script to produce a map fold effect. Uses an [example map](https://geoscience.
 [hermannsburg_plot]: https://github.com/cverdel/rayshader_experiment/blob/main/image3.png?raw=true
 
 R script to create a map fold effect. It will produce a 3D render in an interactive rgl window.
-'''
+```
 #It's important to install the latest version of rayshader from Github:
 #install.packages("devtools")
 #devtools::install_github("tylermorganwall/rayshader")
@@ -113,4 +113,4 @@ zscale2=50 #Sets vertical exaggeration for plotting
   add_shadow(ambient_layer,0.1) %>%
   plot_3d(small_el_matrix, solid=FALSE, zscale=zscale2, background='#fdfdfd')
   
-  '''
+```
