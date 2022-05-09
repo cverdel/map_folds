@@ -7,8 +7,8 @@ R script to produce a map fold effect. Uses an [example map](https://geoscience.
 
 R script to create a map fold effect. It will produce a 3D render in an interactive rgl window.
 '''
-# It's important to install the latest version of rayshader from Github:
-# install.packages("devtools")
+#It's important to install the latest version of rayshader from Github:
+#install.packages("devtools")
 #devtools::install_github("tylermorganwall/rayshader")
 
 
