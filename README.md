@@ -25,6 +25,7 @@ r1 = raster::raster(dem)
 plot(r1)
 ```
 **Original elevation raster**
+
 ![alt text][r1]
 
 [r1]: https://github.com/cverdel/map_folds/blob/main/r1.png?raw=true
