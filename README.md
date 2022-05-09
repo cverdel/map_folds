@@ -24,9 +24,9 @@ download.file(DEM_url, dem, mode="wb")
 r1 = raster::raster(dem)
 plot(r1)
 ```
-![alt text][hermannsburg_plot_folded]
+![alt text][r1]
 
-[hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
+[r1]: https://github.com/cverdel/map_folds/blob/main/r1.png?raw=true
 ```
 #Splits map into rgb bands. The original file has 4 bands, so there's an extra "t" band below.
 names(rgb) = c("r","g","b","t")
@@ -79,9 +79,9 @@ r2<-rasterFromXYZ(rdf) #Creates raster from dataframe
 r2<-subset(r2, subset=2, drop=TRUE)
 plot(r2)
 ```
-![alt text][hermannsburg_plot_folded]
+![alt text][r2]
 
-[hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
+[r2]: https://github.com/cverdel/map_folds/blob/main/r2.png?raw=true
 ```
 #Creates vertical panels (i.e., horizontal folds)
 rdf_v$layer<-ifelse(rdf_v$y>=y0 & rdf_v$y<y1 , (f*(y1-rdf_v$y))*tan(slope_v*pi/180), 
@@ -94,18 +94,18 @@ r3<-rasterFromXYZ(rdf_v) #Creates raster from dataframe
 r3<-subset(r3, subset=2, drop=TRUE)
 plot(r3)
 ```
-![alt text][hermannsburg_plot_folded]
+![alt text][r3]
 
-[hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
+[r3]: https://github.com/cverdel/map_folds/blob/main/r3.png?raw=true
 ```
 #Raster math
 elevation_final<-r1+0.08*r2+0.08*r3 #Combines the 3 rasters (original elevation data, vertical folds, and horizontal folds).
 plot(elevation_final)
 ```
 Final elevation raster
-![alt text][hermannsburg_plot_folded]
+![alt text][elevation_final]
 
-[hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
+[elevation_final]: https://github.com/cverdel/map_folds/blob/main/elevation_final.png?raw=true
 ```
 #Raster to matrix conversion of elevation data
 el_matrix = rayshader::raster_to_matrix(elevation_final)
