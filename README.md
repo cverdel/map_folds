@@ -1,5 +1,5 @@
 # Map folds
-R script to produce a map fold effect
+R script to produce a map fold effect. Uses an [example map] (https://geoscience.nt.gov.au/gemis/ntgsjspui/handle/1/81667) and [example SRTM elevation data] (https://dwtkns.com/srtm30m/).
 
 ![alt text][hermannsburg_plot]
 
