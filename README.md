@@ -5,7 +5,7 @@ R script to produce a map fold effect. Uses an [example map](https://geoscience.
 
 [hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
 
-R script to create a map fold effect. It will produce a 3D render in an interactive rgl window.
+R script to create a folded map effect. It will produce a 3D render in an interactive rgl window.
 ```
 #It's important to install the latest version of rayshader from Github
 #install.packages("devtools")
@@ -24,7 +24,9 @@ download.file(DEM_url, dem, mode="wb")
 r1 = raster::raster(dem)
 plot(r1)
 ```
+![alt text][hermannsburg_plot_folded]
 
+[hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
 ```
 #Splits map into rgb bands. The original file has 4 bands, so there's an extra "t" band below.
 names(rgb) = c("r","g","b","t")
@@ -77,7 +79,9 @@ r2<-rasterFromXYZ(rdf) #Creates raster from dataframe
 r2<-subset(r2, subset=2, drop=TRUE)
 plot(r2)
 ```
+![alt text][hermannsburg_plot_folded]
 
+[hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
 ```
 #Creates vertical panels (i.e., horizontal folds)
 rdf_v$layer<-ifelse(rdf_v$y>=y0 & rdf_v$y<y1 , (f*(y1-rdf_v$y))*tan(slope_v*pi/180), 
@@ -90,13 +94,18 @@ r3<-rasterFromXYZ(rdf_v) #Creates raster from dataframe
 r3<-subset(r3, subset=2, drop=TRUE)
 plot(r3)
 ```
+![alt text][hermannsburg_plot_folded]
 
+[hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
 ```
 #Raster math
 elevation_final<-r1+0.08*r2+0.08*r3 #Combines the 3 rasters (original elevation data, vertical folds, and horizontal folds).
 plot(elevation_final)
 ```
+Final elevation raster
+![alt text][hermannsburg_plot_folded]
 
+[hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
 ```
 #Raster to matrix conversion of elevation data
 el_matrix = rayshader::raster_to_matrix(elevation_final)
