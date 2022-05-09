@@ -81,6 +81,8 @@ r2<-rasterFromXYZ(rdf) #Creates raster from dataframe
 r2<-subset(r2, subset=2, drop=TRUE)
 plot(r2)
 ```
+**Vertical folds**
+
 ![alt text][r2]
 
 [r2]: https://github.com/cverdel/map_folds/blob/main/r2.png?raw=true
@@ -96,6 +98,8 @@ r3<-rasterFromXYZ(rdf_v) #Creates raster from dataframe
 r3<-subset(r3, subset=2, drop=TRUE)
 plot(r3)
 ```
+**Horizontal folds**
+
 ![alt text][r3]
 
 [r3]: https://github.com/cverdel/map_folds/blob/main/r3.png?raw=true
@@ -104,7 +108,8 @@ plot(r3)
 elevation_final<-r1+0.08*r2+0.08*r3 #Combines the 3 rasters (original elevation data, vertical folds, and horizontal folds).
 plot(elevation_final)
 ```
-Final elevation raster
+**Final elevation raster**
+
 ![alt text][elevation_final]
 
 [elevation_final]: https://github.com/cverdel/map_folds/blob/main/elevation_final.png?raw=true
