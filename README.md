@@ -1,5 +1,5 @@
 # Map folds
-R script to produce a map fold effect. Uses an [example map](https://geoscience.nt.gov.au/gemis/ntgsjspui/handle/1/81667) and [example SRTM elevation data](https://dwtkns.com/srtm30m/).
+R script to produce a folded map effect. Uses an [example map](https://geoscience.nt.gov.au/gemis/ntgsjspui/handle/1/81667) and [example SRTM elevation data](https://dwtkns.com/srtm30m/).
 
 ![alt text][hermannsburg_plot_folded]
 
@@ -136,3 +136,8 @@ zscale2=50 #Sets vertical exaggeration for plotting
   add_shadow(ambient_layer,0.1) %>%
   plot_3d(small_el_matrix, solid=FALSE, zscale=zscale2, background='#fdfdfd')
 ```
+**Can customise the view in the rgl window**
+
+![alt text][hermannsburg_plot_folded]
+
+[hermannsburg_plot_folded]: https://github.com/cverdel/map_folds/blob/main/hermannsburg_folded_map.png?raw=true
