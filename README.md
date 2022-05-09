@@ -7,10 +7,9 @@ R script to produce a map fold effect. Uses an [example map](https://geoscience.
 
 R script to create a map fold effect. It will produce a 3D render in an interactive rgl window.
 ```
-#It's important to install the latest version of rayshader from Github:
+#It's important to install the latest version of rayshader from Github
 #install.packages("devtools")
 #devtools::install_github("tylermorganwall/rayshader")
-
 
 #Load image
 image_url<-"https://github.com/cverdel/rayshader_experiment/raw/main/Hermannsburg_map.tif"
@@ -23,13 +22,15 @@ DEM_url<-"https://github.com/cverdel/rayshader_experiment/raw/main/Hermannsburg_
 dem<-tempfile()
 download.file(DEM_url, dem, mode="wb")
 r1 = raster::raster(dem)
+plot(r1)
+```
 
-#Splits map into rgb band. The original file has 4 bands, so there's an extra "t" band below.
-names(rgb) = c("r","g","b","a")
+```
+#Splits map into rgb bands. The original file has 4 bands, so there's an extra "t" band below.
+names(rgb) = c("r","g","b","t")
 rgb_r = rayshader::raster_to_matrix(rgb$r)
 rgb_g = rayshader::raster_to_matrix(rgb$g)
 rgb_b = rayshader::raster_to_matrix(rgb$b)
-
 
 map_array = array(0,dim=c(nrow(rgb_r),ncol(rgb_r),3))
 
@@ -75,7 +76,9 @@ rdf$layer<-rdf$layer*1
 r2<-rasterFromXYZ(rdf) #Creates raster from dataframe
 r2<-subset(r2, subset=2, drop=TRUE)
 plot(r2)
+```
 
+```
 #Creates vertical panels (i.e., horizontal folds)
 rdf_v$layer<-ifelse(rdf_v$y>=y0 & rdf_v$y<y1 , (f*(y1-rdf_v$y))*tan(slope_v*pi/180), 
                     ifelse(rdf_v$y>=y1 & rdf_v$y<y2 , (f*(rdf_v$y-y1))*tan(slope_v*pi/180),
@@ -86,11 +89,15 @@ rdf_v$layer<-rdf_v$layer*1
 r3<-rasterFromXYZ(rdf_v) #Creates raster from dataframe
 r3<-subset(r3, subset=2, drop=TRUE)
 plot(r3)
+```
 
+```
 #Raster math
 elevation_final<-r1+0.08*r2+0.08*r3 #Combines the 3 rasters (original elevation data, vertical folds, and horizontal folds).
 plot(elevation_final)
+```
 
+```
 #Raster to matrix conversion of elevation data
 el_matrix = rayshader::raster_to_matrix(elevation_final)
 
@@ -112,5 +119,4 @@ zscale2=50 #Sets vertical exaggeration for plotting
   add_shadow(ray_layer,0.3) %>%
   add_shadow(ambient_layer,0.1) %>%
   plot_3d(small_el_matrix, solid=FALSE, zscale=zscale2, background='#fdfdfd')
-  
 ```
